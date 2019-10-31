@@ -14,22 +14,3 @@ Check out my [resume](resume.html) here.
 ### Dashboard
 This is my [dashboard](dashboard_template.html) with some neat plots.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
