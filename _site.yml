@@ -1,0 +1,21 @@
+name: "Sam's website"
+output_dir: "."
+navbar:
+  title: "Home"
+  right: 
+    - text: "About"
+      href: about.html
+    - text: "Dashboard"
+      href: dashboard_template.html
+    - icon: fa-envelope fa-lg
+      href: mailto:samantha.c.loewen@gmail.com>
+    - icon: fa-github fa-lg
+      href: http://github.com/samloewen/
+output:
+  html_document:
+    theme: united
+    toc: true
+    toc_float: true
+    
+    
+    
