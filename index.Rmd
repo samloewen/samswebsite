@@ -3,14 +3,16 @@
 
 ### This is Sam's website
 <br>
+This is my cat Otis. Isn't he a handsome little bean?
 
 <img src="images/otis.jpg" style="width:50%">
 
 ### Resume
-This is my [resume](resume.html)
+Check out my [resume](resume.html) here.
+<br>
 
 ### Dashboard
-This is my [dashboard](dashboard_template.html)
+This is my [dashboard](dashboard_template.html) with some neat plots.
 
 
 

@@ -4,6 +4,7 @@ output:
   flexdashboard::flex_dashboard:
     orientation: columns
     vertical_layout: fill
+    theme: united
 ---
 
 ```{r, include=FALSE}
@@ -27,7 +28,7 @@ weather_df =
   select(name, id, everything())
 ```
 
-Column {data-width=550}
+Column {data-width=500}
 -----------------------------------------------------------------------
 
 ### Percipitation and temperature
@@ -40,7 +41,7 @@ Column {data-width=550}
     color = ~prcp, text = ~text_label, alpha = 0.5)
 ```
 
-Column {data-width=350}
+Column {data-width=300}
 -----------------------------------------------------------------------
 
 ### Minimum temperature, Central Park
