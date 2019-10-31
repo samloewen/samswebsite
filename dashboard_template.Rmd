@@ -31,7 +31,7 @@ weather_df =
 Column {data-width=550}
 -----------------------------------------------------------------------
 
-### Chart A
+### Percipitation and temperature
 
 ```{r}
   weather_df %>% 
@@ -44,7 +44,7 @@ Column {data-width=550}
 Column {data-width=350}
 -----------------------------------------------------------------------
 
-### Chart B
+### Minimum temperature, Central Park
 
 ```{r}
   weather_df %>% 
@@ -52,7 +52,7 @@ Column {data-width=350}
   plot_ly(x = ~date, y = ~tmin, color = ~name, type = "scatter", mode = "lines", fill = "tozeroy")
 ```
 
-### Chart C
+### Minimum temperature distribution, by site
 
 ```{r}
   weather_df %>% 
