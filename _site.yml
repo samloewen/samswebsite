@@ -11,6 +11,8 @@ navbar:
       href: mailto:samantha.c.loewen@gmail.com>
     - icon: fa-github fa-lg
       href: http://github.com/samloewen/
+    - icon: fa-linkedin fa-lg
+      href: https://www.linkedin.com/in/samantha-loewen-a4136ba7/
 output:
   html_document:
     theme: united
