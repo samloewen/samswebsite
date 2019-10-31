@@ -4,6 +4,8 @@
 ### This is Sam's website
 <br><br>
 
+<img src="images/otis.jpg" style="width:50%">
+
 ### Resume
 This is my [resume](resume.html)
 
