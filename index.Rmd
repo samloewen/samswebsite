@@ -1,0 +1,31 @@
+<br><br>
+
+
+### This is Sam's website
+<br><br>
+
+### Resume
+This is my [resume](resume.html)
+
+### Dashboard
+This is my [dashboard](dashboard_template.html)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,60 @@
+---
+title: "Dashboard"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r, include=FALSE}
+library(tidyverse)
+library(viridis)
+library(p8105.datasets)
+library(plotly)
+library(flexdashboard)
+
+weather_df = 
+  rnoaa::meteo_pull_monitors(c("USW00094728", "USC00519397", "USS0023B17S"),
+                      var = c("PRCP", "TMIN", "TMAX"), 
+                      date_min = "2017-01-01",
+                      date_max = "2017-12-31") %>%
+  mutate(
+    name = recode(id, USW00094728 = "CentralPark_NY", 
+                      USC00519397 = "Waikiki_HA",
+                      USS0023B17S = "Waterhole_WA"),
+    tmin = tmin / 10,
+    tmax = tmax / 10) %>%
+  select(name, id, everything())
+```
+
+Column {data-width=550}
+-----------------------------------------------------------------------
+
+### Chart A
+
+```{r}
+  weather_df %>% 
+  mutate(text_label = str_c("Precipitation (mm)")) %>% 
+  plot_ly(
+    x = ~tmin, y = ~tmax, type = "scatter", mode = "markers",
+    color = ~prcp, text = ~text_label, alpha = 0.5)
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Chart B
+
+```{r}
+  weather_df %>% 
+  filter(name == "CentralPark_NY") %>% 
+  plot_ly(x = ~date, y = ~tmin, color = ~name, type = "scatter", mode = "lines", fill = "tozeroy")
+```
+
+### Chart C
+
+```{r}
+  weather_df %>% 
+  plot_ly(x = ~name, y = ~tmin, color = ~name, type = "violin")
+```
+
