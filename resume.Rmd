@@ -1,36 +1,57 @@
 
 <br><br>
 
-### EDUCATION 
-
-*   **2018-present**	COLUMBIA UNIVERSITY, MAILMAN SCHOOL OF PUBLIC HEALTH	*(New York, NY)*
-    * Master of Public Health: Population and Family Health
-    * Certificate Concentration: Applied Biostatistics
-<br><br>
-*   **2009-2013**	VASSAR COLLEGE	*(Poughkeepsie, NY)*
-    * Bachelor of Arts: Geography
 
 ### EXPERIENCE
 
-*   **2019-present**	INTERNATIONAL RESCUE COMMITTEE, Graduate Intern: Data Analyst	*(New York, NY)*
-    * Analyzes data for an adolescent sexual and reproductive health research study conducted in Nigeria and South Sudan, using SPSS and Excel
-    * Developed data collection tools, including data tracking tools, focus group discussion, and key informant interview guides
-    * Co-authors two case studies and a final donor report of research finding
+*   **2020-present**	Population Council, Research Consultant	*(New York, NY)*
+    * Conducting a systematic review of the impact of COVID-19 and other acute disasters on sexual and reproductive health in low- and middle-income countries
+    * Peer reviewed article to be published Summer 2020
+<br><br>
+*   **2019-present**	APMG Health, Global Health Consultant	(*New York, NY*)
+    * Conducts evaluations of the Global Fund’s grants to prevent HIV, TB, and malaria in low- and middle-income countries
+    * Authors reports and abstracts related to global HIV prevention among key population groups
+    * Reviews and edits reports evaluating the impact of the Global Fund’s grants in select countries
+<br><br>
+*   **2020-2020**	Columbia University, SQL and Relational Databases Graduate Teaching Assistant	*(New York, NY)*
+    * Provided expertise on MySQL and MS Access to graduate students in weekly classes and office hours
+    * Graded assignments and exams, providing feedback to students and teaching team
+<br><br>
+*   **2019-2020**	International Rescue Committee, Research Data Analyst	*(New York, NY)*
+    * Performed statistical analysis for an adolescent sexual and reproductive health research study conducted in Nigeria and South Sudan
+    * Developed data collection and management tools, including SPSS and Excel databases, focus group discussion guides, and key informant interview guides
+    * Co-authored case study of research finding
     * Presented initial findings of research at a technical consultation in August 2019
 <br><br>
-*   **2019-present**	APMG HEALTH, Program Associate	(*New York, NY*)
-    * Coauthors abstracts and journal publications related to global HIV prevention packages provided to key population groups
-    * Managed evaluation of the Global Fund grant “Scaling Up HIV Prevention in Kosovo,” which included conducting large-scale literature reviews, performing data analysis, and developing an evaluation report submitted in Summer 2019
-    * Reviews and edits reports evaluating The Global Fund’s impact on HIV, TB, and malaria in select countries
-<br><br>
-*   **2015-2018**	UBUNTU PATHWAYS, Data Manager: Monitoring and Evaluations	(*New York, NY*)	    
-    * Tracked and analyzed data to monitor clinical, educational, and psycho-social support program progress
+*   **2015-2018**	Ubuntu Pathways, Data Manager: Monitoring and Evaluations	(*New York, NY*)	    
+    * Responsible for management of data for multiple major programs, involving creating databases, ensuring integrity of data, and training of data capture staff
+    * Performed data analysis on clinical, educational, and psycho-social support program progress
     * Prepared reports for internal and external audiences based on programmatic data
-    * Responsible for management of data for multiple major programs, involving creating data tools, ensuring integrity of data, training data capture staff, and providing analysis of programmatic trends
-    * Provided operational and administrative support across programs as needed
+    * Collaborated in development of monitoring and evaluation policies and processes
 <br><br>
-*   **2013-2015**	HARLEM ACADEMY, Development Associate	(*New York, NY*)
-    * Annually raised $6 million through mail appeals, electronic communication, and donor cultivation
+*   **2013-2015**	Harlem Academy, Development Associate	(*New York, NY*)
+    * Managed extensive database of donors
     * Led logistical planning and execution of large-scale fundraising and community events
     * Managed daily mentoring program for 250 students and volunteers
-    * Represented Harlem Academy at community events, volunteer fairs, and fundraising functions 
+    
+<br>
+
+### EDUCATION 
+
+*   **2018-2020**	Columbia University Mailman School of Public Health	*(New York, NY)*
+    * Master of Public Health: Population and Family Health
+    * Certificate Concentration: Applied Biostatistics
+<br><br>
+*   **2009-2013**	Vassar College	*(Poughkeepsie, NY)*
+    * Bachelor of Arts: Geography
+    
+<br>
+
+### OTHER
+
+*   **Software**
+    * R, SQL, SAS, SPSS, ArcGIS, Tableau, MS Excel, MS Access
+*   **Language**
+    * English (fluent), French (beginner)
+*   **Awards**
+    * NYAAPOR 2020 Young Public Opinion Stars in Research
