@@ -1,9 +1,13 @@
+<br><br>
 
 
-# Welcome! 
+# Sam Loewen 
 
-This is my about page! I made this website for class, I hope you enjoy.
+Hello! My name is Sam and I am a public health professional with functional expertise in data management, statistical analysis, and program evaluation. I have many years of experience working in global health, specifically in sexual/reproductive health and HIV prevention in low- and middle-income countries.
+<br><br>
 
-This is me and a lovely sunset.
+<img src="images/hawaii.jpg" style="width:40%">
+<br>(Here I am in Hawaii in better times)
 
-<img src="images/sunset.jpg" style="width:70%">
+
+I am originally from Kentucky, but have lived in New York for over 10 years. I've found my quarantine home in Philadelphia and do not hate it! 

@@ -1,16 +1,16 @@
 <br><br>
 
-
-### This is Sam's website
-<br>
-This is my cat Otis. Isn't he a handsome little bean?
-
-<img src="images/otis.jpg" style="width:50%">
-
-### Resume
-Check out my [resume](resume.html) here.
+# Sam Loewen, MPH
 <br>
 
-### Dashboard
-This is my [dashboard](dashboard_template.html) with some neat plots.
+Hello! My name is Sam and I am a public health professional with functional expertise in data management, statistical analysis, and program evaluation. I have many years of experience working in global health, specifically in sexual/reproductive health and HIV prevention in low- and middle-income countries.
+<br>
 
+<img src="images/hawaii.jpg" style="width:40%">
+<br>(Here I am in Hawaii in better times)
+
+Hello! My name is Sam and I am a public health professional with functional expertise in data management, statistical analysis, and program evaluation. I have many years of experience working in global health, specifically in sexual/reproductive health and HIV prevention in low- and middle-income countries.
+
+I recevied my BA in Geogrpahy from Vassar College, where I completed my thesis on the relationship between food and gentrification in Brooklyn, NY. I received my MPH from Columbia Univeristy Mailman School of Public Health with a focus on Population Health and Applied Biostatistics. I completed a capstone project based on research conducted with the International Rescue Committee on adolescent reproductive health in crisis settings.
+
+I am originally from Kentucky, but have lived in New York for over 10 years. I've found my quarantine home in Philadelphia and do not hate it! 

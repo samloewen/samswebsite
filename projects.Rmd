@@ -1,0 +1,11 @@
+<br><br>
+
+
+# Projects
+
+Here are some sample projects:
+This is an interactive [dashboard](dashboard_template.html) examining weather patterns in New York.
+
+
+
+
