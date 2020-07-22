@@ -1,4 +1,4 @@
-name: "Sam's website"
+name: "Sam Loewen"
 output_dir: "."
 navbar:
   title: "Home"
@@ -23,6 +23,6 @@ navbar:
       href: https://www.linkedin.com/in/samantha-loewen-a4136ba7/
 output:
   html_document:
-    theme: united
+    theme: journal
     toc: true
     toc_float: true
