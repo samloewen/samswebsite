@@ -1,7 +1,10 @@
-<br><br>
+---
+title: "Sam Loewen, MPH"
+output: html_document
+---
 
-# Sam Loewen, MPH
 <br>
+
 
 Hello! My name is Sam and I am a public health professional with functional expertise in data management, statistical analysis, and program evaluation. I have many years of experience working in global health, specifically in sexual/reproductive health and HIV prevention in low- and middle-income countries.
 <br>
