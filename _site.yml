@@ -1,4 +1,4 @@
-name: "Sam Loewen"
+name: "SL"
 output_dir: "."
 navbar:
   title: "Home"
@@ -7,14 +7,14 @@ navbar:
       href: resume.html
     - text: "Projects"
       menu:
-        - text: "R"
-        - text: "Dashboard"
+        - text: "Data Analysis"
+        - text: "Weather Dashboard"
           href: dashboard_template.html
         - text: "New York Dogs"
           href: ny_dogs.html
-        - text: "GIS"
-        - text: "Kentucky"
-          href: resume.html          
+        - text: "Spatial Analysis"
+        - text: "Kentucky Vaccine Coverage"
+          href: ky_immun.html          
     - icon: fa-envelope fa-lg
       href: mailto:samantha.c.loewen@gmail.com>
     - icon: fa-github fa-lg

@@ -1,5 +1,5 @@
 ---
-title: "Dashboard"
+title: "Central Park Weather Dashboard"
 output:  
   flexdashboard::flex_dashboard:
     orientation: columns

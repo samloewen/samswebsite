@@ -1,0 +1,197 @@
+---
+title: "Childhood vaccine coverage by county: Kentucky 2014-2016"
+output: html_document
+---
+<br>
+
+
+```{r, include=FALSE}
+library(tidyverse)
+library(readxl)
+library(knitr)
+```
+
+```{r, include=FALSE}
+immun = read.csv("./data/new_immun.csv") %>% 
+  janitor::clean_names() %>% 
+  mutate(i_county = as.character(i_county),
+         cov1516 = as.numeric(cov1516),
+         cov1415 = as.numeric(cov1415))
+
+immun$cov_perc_change = ((immun$cov1516 - immun$cov1415)/immun$cov1415)
+immun$rank_point_change = immun$rank1516 - immun$rank1415
+
+immun$cov_perc_change = round(immun$cov_perc_change,digits=2)
+
+head(immun)
+
+```
+
+```{r, include=FALSE}
+immun_long =
+  immun %>% 
+  select(-cov_perc_change, -rank_point_change) %>% 
+  pivot_longer (cov1415:rank1516, names_to = "type", values_to = "value") %>% 
+  group_by(i_county)
+
+immun_long$year = ifelse(immun_long$type == "cov1415"|immun_long$type == "rank1415", "14-15","15-16")
+immun_long$type = ifelse(immun_long$type == "cov1415"|immun_long$type=="cov1516","cov", "rank")
+
+head(immun_long)
+```
+The following data examines the vaccine coverage rate among children 19-35 months in Kentucky from 2014 to 2016. The data, from the Kentucky Departmet of Health, provides the vaccine coverage rate and county rank (1 - best, 120 - worst) for the 120 counties in Kentucky. Data is provided for the 2014-15 and 2015-16 school years.
+
+<br>
+The average coverage rate in 2014-15 was `r round((mean(pull(immun,cov1415))*100),digits=2)`%, which increased slightly to  `r round((mean(pull(immun,cov1516))*100),digits=2)`% in 2015-16. The average county increased their vaccine coverage by `r round((mean(pull(immun,cov_perc_change))*100),digits=2)`%.
+
+<br>
+```{r, echo=FALSE}
+sum_table=
+  immun %>% 
+  summarize("Avg coverage 2014-15" = round(mean(cov1415)*100, digits=2), "Avg coverage 2015-16" = round(mean(cov1516)*100, digits=2), "Avg coverage percent change" = round(mean(cov_perc_change)*100,digits=2))
+knitr::kable(sum_table)
+```
+
+<br>
+In 2014-15, vaccine coverage ranged from 11% in Owsley County to 99% in Wayne County. In 2015-16 coverage ranged from 27% in Bell County to 100% in Spencer County. 
+
+<br>
+```{r, echo=FALSE}
+immun_long %>%
+  filter (type=="cov") %>% 
+  ggplot(aes(x = year, y = value)) +
+  geom_violin(color="purple") +
+  labs(
+    title = "Vaccine coverage, 2014-15 vs 2015-16",
+    x = "Year",
+    y = "Coverage percentage")
+```
+
+
+
+
+
+```{r, include=FALSE}
+require(spdep)
+require(maptools)
+require(rgdal)
+library(tidyverse)
+```
+
+
+```{r, include=FALSE}
+ky_im = readOGR(dsn="C:/Users/saman/OneDrive - cumc.columbia.edu/School/Semester 4/GIS/Final", layer="this one")
+names(ky_im)
+plot(ky_im)
+```
+
+```{r, include=FALSE}
+ky_im$X2014.2015 = as.numeric(as.character(ky_im$X2014.2015))
+ky_im$X2015.2016 = as.numeric(as.character(ky_im$X2015.2016))
+ky_im$X2014.201_1 = as.numeric(as.character(ky_im$X2014.201_1))
+ky_im$X2015.201_1 = as.numeric(as.character(ky_im$X2015.201_1))
+
+summary(ky_im$X2014.2015)
+summary(ky_im$X2015.2016)
+summary(ky_im$X2014.201_1)
+summary(ky_im$X2015.201_1)
+```
+
+```{r, include=FALSE}
+ky_im <- spTransform(ky_im, CRS("+init=epsg:4326"))
+
+ky_im$percent_change = ((ky_im$X2015.2016 - ky_im$X2014.2015) / ky_im$X2014.2015)
+ky_im$rank_change = (ky_im$X2015.201_1 - ky_im$X2014.201_1)
+ky_im$percent_change = round(ky_im$percent_change, digits=2)
+
+summary(ky_im$percent_change)
+summary(ky_im$rank_change)
+```
+
+```{r, include=FALSE}
+require(leaflet)
+
+binpal <- colorBin("BuPu", domain=ky_im$X2015.2016, 6)
+
+map1 <- leaflet(ky_im) %>%
+  setView(-85.5,37.8393, 6) %>%
+  addTiles()
+
+map1
+```
+
+```{r, include=FALSE}
+map1 %>% addPolygons()
+map1 <- map1 %>% addPolygons(fillColor = ~binpal(X2015.2016),
+                             weight = 2,
+                             color = 'black',
+                             fillOpacity = 0.5,
+                             popup = paste("County:", ky_im$NAME2, "<br> <br>",
+                                           "2014-15 coverage rate:", ky_im$X2014.2015*100, "%", "<br>",
+                                           "2014-15 county rank:", ky_im$X2014.201_1, "<br>",
+                                           "2015-16 coverage rate", ky_im$X2015.2016*100, "%", "<br>",
+                                           "2015-16 county rank:", ky_im$X2015.201_1, "<br> <br>",
+                                           "Rate change:", ky_im$percent_change*100, "%", "<br>",
+                                           "Rank change:", ky_im$rank_change, "<br>"))
+
+map1
+```
+<br>
+The follwing interactive map displays coverage and rank data geographically. Click on each county for specific information. 
+
+<br>
+```{r, echo=FALSE}
+map2 <- map1 %>% addPolygons(fillColor = ~binpal(X2015.2016),
+                             weight = 2,
+                             color = 'black',
+                             fillOpacity = 0.5,
+                             popup = paste("County:", ky_im$NAME2, "<br> <br>",
+                                           "2015-16 vaccine coverage rate:", ky_im$X2015.2016, "<br>",
+                                           "2015-16 county rank:", ky_im$X2015.201_1, "<br> <br>",
+                                           "Coverage rate change from 2014-15:", ky_im$percent_change, "<br>",
+                                           "County rank change from 2014-15:", ky_im$rank_change, "<br>"))
+
+map2
+```
+
+```{r, include=FALSE}
+library(plotly)
+
+  immun %>% 
+  ggplot(aes(x=(cov_perc_change*100),y=rank_point_change))+
+  geom_point(aes(text=i_county), colour="purple", alpha=1/2, i="cities") + geom_smooth(method='lm', se=FALSE, color="black") +
+  labs(
+    title = "Change in Coverage Rate vs. Change in County Rank, 2014-15 to 2015-16",
+    x = "Percent change in coverage",
+    y = "Change in county rank")
+
+  immun %>% 
+  ggplot(aes(x=((cov1516-cov1415)*100),y=rank_point_change))+
+  geom_point(colour="purple", alpha=1/2, i="cities") + geom_smooth(method='lm', se=FALSE, color="black")+
+  labs(
+    title = "Change in Coverage Rate vs. Change in County Rank, 2014-15 to 2015-16",
+    x = "Percentage point change in coverage",
+    y = "Change in county rank")
+```
+<br>
+
+As vaccine coverage increases, county rank genreally improves, or drops closer to 1. Hover over each point to view specific county data.
+
+<br>
+```{r, echo=FALSE}
+fig <- plot_ly(immun, x = ~((cov1516-cov1415)*100), y = ~rank_point_change, type = 'scatter', mode='markers',
+        hoverinfo = 'text',
+        text = ~paste('</br> County: ', i_county,
+                      '</br> Rank change: ', rank_point_change,
+                      '</br> Coverage change: ', round((cov1516-cov1415)*100),digits=2))
+
+fig <- fig %>% layout(title = 'Change in Coverage Rate vs. Change in County Rank, 2014-15 to 2015-16',
+         xaxis = list(title = 'Percentage point change in coverage',
+                      zeroline = TRUE),
+         yaxis = list(title = 'Change in county rank'))
+
+fig
+```
+
+
+

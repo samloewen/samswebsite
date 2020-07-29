@@ -76,7 +76,7 @@ distinct_dogz =
   janitor::clean_names()
 ```
 
-# Gender of dogs by borough 
+### Gender of dogs by borough 
 
 
 ```{r, echo=FALSE}
@@ -94,7 +94,7 @@ plot_2
 ```
 
 
-# Age distribution of dogs by boroughs 
+### Age distribution of dogs by boroughs 
 
 ```{r, echo=FALSE}
 plot_3=
@@ -109,7 +109,7 @@ plot_3
 ```
 
 
-# Breed of dogs by borough
+### Breed of dogs by borough
 
 ```{r, echo=FALSE}
 plot_4=
@@ -129,7 +129,7 @@ plot_4=
 plot_4
 ```
 
-# License issue date 
+### License issue date 
 
 ```{r, echo=FALSE}
 plot_5 =
@@ -178,7 +178,7 @@ plot_5.51
 ```
 
 
-# Top name by birth year
+### Top name by birth year
 
 ```{r, echo=FALSE}
 plot_6 = 
@@ -195,57 +195,6 @@ distinct_dogz %>%
     x = "Birth year", 
     y = "Number of dogs")
 plot_6
-```
-
-
-# Regression to predict the age of dog by borough, gener, and breed
-
-```{r, include=FALSE}
-
-#Regression analysis: predict the age of the dog (y) if you know the boro (x1) and gender (x2) and breed (x3)
-
-#Step 0: Cleaning: change breed_name to a factor rather than a character varialbe
-distinct_dogz_reg = 
-  distinct_dogz %>% 
-  mutate(
-    breed_name = as.factor(breed_name)
-  )
-distinct_dogz_reg
-```
-
-```{r, include=FALSE}
-#create reference groups that are coded as 
-distinct_dogz_reg = 
-  distinct_dogz_reg %>% 
-  mutate(
-    borough = fct_infreq(borough),
-    animal_gender = fct_infreq(animal_gender),
-    breed_name = fct_infreq(breed_name)
-    )
-#run linear regression with dog age as Y and borough, breed name and animal gender as categorical
-fit = lm(dog_age ~ borough + animal_gender, data = distinct_dogz)
-
-#view outputs
-fit %>% 
-  broom::tidy()
-
-#create tidy table
-fit %>% 
-  broom::tidy() %>% 
-  select(term, estimate, p.value) %>% 
-  knitr::kable(digits = 3)
-```
-
-```{r, include=FALSE}
-#model residuals 
-modelr::add_residuals(distinct_dogz_reg, fit)
-```
-
-```{r, echo=FALSE}
-#graph residuals for each borough
-distinct_dogz_reg %>% 
-  modelr::add_residuals(fit) %>% 
-  ggplot(aes(x = borough, y = resid)) + geom_violin()
 ```
 
 
