@@ -1,5 +1,5 @@
 ---
-title: "Analysis of Dogs Licensed in New York City"
+title: "Analysis of Licensed Dogs in New York City"
 output: html_document
 ---
 <br>
@@ -82,8 +82,7 @@ distinct_dogz =
   janitor::clean_names()
 ```
 
-The following plot explores gender of dogs by borough. This chart shows us not only that the greatest number of dogs are in Manhattan followed by Brooklyn, but that male dogs are perferred over female dogs in every borough. In all of the city there are over 13,000 more male dogs than female dogs.
-
+The following plot explores gender of dogs by borough. This chart shows us not only that the greatest number of dogs are in Manhattan followed by Brooklyn, but that male dogs are preferred over female dogs in every borough. In all of the city there are over 13,000 more male dogs than female dogs.
 
 ```{r, echo=FALSE, warning=FALSE}
 plot_2=
@@ -111,7 +110,7 @@ knitr::kable(table2)
 
 
 <br>
-The following plot shows age distribution of dogs by borough. The majorty of dogs are between 3 and 10 years old, with a median age of 6 and mean age of 7 years. Dogs tend to be slightly older in Staten Island, with an average age of 7.9 years.
+The following plot shows age distribution of dogs by borough. The majority of dogs are between 3 and 10 years old, with a median age of 6 and mean age of 7 years. Dogs tend to be slightly older in Staten Island, with an average age of 7.9 years.
 
 ```{r, echo=FALSE}
 plot_3=
@@ -199,7 +198,7 @@ plot_5.51
 ```
 
 <br>
-For a bit of fun, let's look at top name by birth year to see what the trendy dogs were called. We looked at the most popular name each year from 2000 to 2018. We found that most names were popular for multiple years, which the exception of 'Princess', 'Lucy', and 'Lola'. Some names saw resurrgences years later, with 'Coco' topping the charts in 2000 and resurfacing again as champion in 2006. 'Bella' too made a comeback, with a number one spot in 2004, and reemerging as the dominate name in 2009, 10, and 11. The more modern surge could be attributed to the Twilight movies which premiered in 2008-2012, but that is merely a conjecture. However the classic 'Charlie' is the enduring winner, being the most popular dog name in 6 different years. 'Charlie' debuted in 2007 and maintained a steady dynasty from 2012 to 2016, only to be toppled by a downward trending 'Luna' in 2017.
+For a bit of fun, we looked at top name by birth year to see what the trendy dogs were called. We looked at the most popular name each year from 2000 to 2018. We found that most names were popular for multiple years, which the exception of 'Princess', 'Lucy', and 'Lola'. Some names saw resurgences years later, with 'Coco' topping the charts in 2000 and resurfacing again as champion in 2006. 'Bella' too made a comeback, with a number one spot in 2004, and reemerging as the dominate name in 2009, 10, and 11. The more modern surge could be attributed to the Twilight movies which premiered in 2008-2012, but that is merely a conjecture. However, the classic 'Charlie' is the enduring winner, being the most popular dog name in 6 different years. 'Charlie' debuted in 2007 and maintained a steady dynasty from 2012 to 2016, only to be toppled by a downward trending 'Luna' in 2017.
 
 <br>
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
