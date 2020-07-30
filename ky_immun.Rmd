@@ -60,7 +60,7 @@ In 2014-15, vaccine coverage ranged from 11% in Owsley County to 99% in Wayne Co
 immun_long %>%
   filter (type=="cov") %>% 
   ggplot(aes(x = year, y = value)) +
-  geom_violin(color="purple") +
+  geom_violin(fill="lightblue2") +
   labs(
     title = "Vaccine coverage, 2014-15 vs 2015-16",
     x = "Year",
