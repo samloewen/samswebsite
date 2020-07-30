@@ -39,7 +39,7 @@ immun_long$type = ifelse(immun_long$type == "cov1415"|immun_long$type=="cov1516"
 
 head(immun_long)
 ```
-The following data examines the vaccine coverage rate among children 19-35 months in Kentucky from 2014 to 2016. The data, from the Kentucky Departmet of Health, provides the vaccine coverage rate and county rank (1 - best, 120 - worst) for the 120 counties in Kentucky. Data is provided for the 2014-15 and 2015-16 school years.
+The following data examines the vaccine coverage rate among children 19-35 months in Kentucky from 2014 to 2016. The data, from the Kentucky Department of Health, provides the vaccine coverage rate and county rank (1 - best, 120 - worst) for the 120 counties in Kentucky. Data is provided for the 2014-15 and 2015-16 school years.
 
 <br>
 The average coverage rate in 2014-15 was `r round((mean(pull(immun,cov1415))*100),digits=2)`%, which increased slightly to  `r round((mean(pull(immun,cov1516))*100),digits=2)`% in 2015-16. The average county increased their vaccine coverage by `r round((mean(pull(immun,cov_perc_change))*100),digits=2)`%.
@@ -137,7 +137,7 @@ map1 <- map1 %>% addPolygons(fillColor = ~binpal(X2015.2016),
 map1
 ```
 <br>
-The follwing interactive map displays coverage and rank data geographically. Click on each county for specific information. 
+The following interactive map displays coverage and rank data geographically. Click on each county for specific information.
 
 <br>
 ```{r, echo=FALSE}
@@ -175,7 +175,7 @@ library(plotly)
 ```
 <br>
 
-As vaccine coverage increases, county rank genreally improves, or drops closer to 1. Hover over each point to view specific county data.
+As vaccine coverage increases, county rank generally improves, or drops closer to 1. Hover over each point to view specific county data.
 
 <br>
 ```{r, echo=FALSE}
