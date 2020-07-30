@@ -3,16 +3,14 @@ output_dir: "."
 navbar:
   title: "Home"
   right: 
-    - text: "CV"
+    - text: "Resume"
       href: resume.html
-    - text: "Projects"
+    - text: "Sample Projects"
       menu:
-        - text: "Data Analysis"
-        - text: "Weather Dashboard"
+        - text: "NYC Weather Dashboard"
           href: dashboard_template.html
         - text: "New York Dogs"
           href: ny_dogs.html
-        - text: "Spatial Analysis"
         - text: "Kentucky Vaccine Coverage"
           href: ky_immun.html          
     - icon: fa-envelope fa-lg
