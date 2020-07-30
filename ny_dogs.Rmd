@@ -1,8 +1,13 @@
 ---
-title: "Analysis of New York Dogs"
+title: "Analysis of Dogs Licensed in New York City"
 output: html_document
 ---
+<br>
 
+This is an analysis conducted on the NYC Dog Licensing dataset. All dog owners who reside in NYC are required by law to license their dogs. This is a publicly available dataset sourced from the Department of Health and Mental Hygiene (DOHMH) Dog Licensing System where owners are able to apply for and renew dog licenses. This dataset was created on September 19, 2017 and was last updated on July 25, 2019. There are 10 variables in this dataset with a raw number of 346,000 observations.
+
+This dataset was cleaned and tidied in a variety of ways. Dog breed names were standardized (ie: Australian Cattle Dog vs Australian Cattledog) and zip codes were matched to boroughs. Records were dropped if the dog breed was listed as 'unknown' or blank, as well as records of dogs who were over 20 years old, assuming these dogs were unlikely to still be alive. An subdataset was also created of only distinct dogs, as the primary dataset had multiple entries per dog if a dog's license was renewed.
+<br><br>
 
 ```{r setup, include=FALSE}
 library(tidyverse)
@@ -73,18 +78,20 @@ dogz_1 =
 distinct_dogz =
   left_join(dogz_1, lat_lon, by = "zip_code") %>% 
   select(-City,-State,-Timezone,-Daylight.savings.time.flag,-geopoint) %>% 
+  filter(dog_age<20) %>% 
   janitor::clean_names()
 ```
 
-### Gender of dogs by borough 
+The following plot explores gender of dogs by borough. This chart shows us not only that the greatest number of dogs are in Manhattan followed by Brooklyn, but that male dogs are perferred over female dogs in every borough. In all of the city there are over 13,000 more male dogs than female dogs.
 
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, warning=FALSE}
 plot_2=
   distinct_dogz %>% 
   filter(animal_gender == "M" | animal_gender == "F") %>% 
   ggplot(aes(x = borough, fill = animal_gender)) +
-  geom_histogram(position = "dodge", stat = "count") +
+  geom_histogram(stat="count") +
+  stat_count(binwidth=1, geom="text", aes(label=..count..), position=position_stack(vjust=.5)) +
   labs(
     title = "Gender of dogs by borough",
     x = "New York Borough",
@@ -93,25 +100,39 @@ plot_2=
 plot_2
 ```
 
+<br>
+```{r, echo=FALSE}
+table2=
+  distinct_dogz %>% 
+  summarize("Males"=sum(if_else(animal_gender=="M",1,0)), "Females"=sum(if_else(animal_gender=="F",1,0)))
 
-### Age distribution of dogs by boroughs 
+knitr::kable(table2)
+```
+
+
+<br>
+The following plot shows age distribution of dogs by borough. The majorty of dogs are between 3 and 10 years old, with a median age of 6 and mean age of 7 years. Dogs tend to be slightly older in Staten Island, with an average age of 7.9 years.
 
 ```{r, echo=FALSE}
 plot_3=
-  ggplot(distinct_dogz, aes(x = borough, y = dog_age)) +
-  geom_boxplot (color = "purple") +
+  distinct_dogz %>% 
+  ggplot(aes(x = borough, y = dog_age)) +
+  geom_boxplot (fill = "lightblue2") +
   labs(
     title = "Age distribution of dogs by borough",
     x = "New York Borough",
     y = "Dog's Age"
   )
 plot_3
+
+distinct_dogz %>% 
+  group_by(borough) %>% 
+  summarize("Avg. dog age" = round(mean(dog_age),digits=2)) %>% 
+knitr::kable()
 ```
 
 
-### Breed of dogs by borough
-
-```{r, echo=FALSE}
+```{r, include=FALSE}
 plot_4=
   distinct_dogz %>% 
   group_by(borough) %>% 
@@ -129,7 +150,8 @@ plot_4=
 plot_4
 ```
 
-### License issue date 
+There was a large uptick in dog licensing in 2016 and 2017. Across all years licensing was highest in the summer, peaking in July.
+
 
 ```{r, echo=FALSE}
 plot_5 =
@@ -145,8 +167,7 @@ plot_5
 ```
 
 
-
-```{r, echo=FALSE}
+```{r, include=FALSE}
 plot_5.5=
   dogz %>% 
   mutate(license_issued_date = floor_date(as_date(license_issued_date), "month")) %>% 
@@ -170,17 +191,18 @@ plot_5.51=
   group_by(license_issued_date) %>% 
   summarize(n_obs = n()) %>% 
       ggplot(aes(x = license_issued_date, y = n_obs)) + 
-      geom_point() + geom_line(group=1) +
+      geom_point(color="lightblue3", size=2) + geom_line(group=1, color="lightblue3", size=1) +
       labs(title = "Number of licenses issued per month", 
       x = "License issue date", 
       y = "Number of licenses")
 plot_5.51
 ```
 
+<br>
+For a bit of fun, let's look at top name by birth year to see what the trendy dogs were called. We looked at the most popular name each year from 2000 to 2018. We found that most names were popular for multiple years, which the exception of 'Princess', 'Lucy', and 'Lola'. Some names saw resurrgences years later, with 'Coco' topping the charts in 2000 and resurfacing again as champion in 2006. 'Bella' too made a comeback, with a number one spot in 2004, and reemerging as the dominate name in 2009, 10, and 11. The more modern surge could be attributed to the Twilight movies which premiered in 2008-2012, but that is merely a conjecture. However the classic 'Charlie' is the enduring winner, being the most popular dog name in 6 different years. 'Charlie' debuted in 2007 and maintained a steady dynasty from 2012 to 2016, only to be toppled by a downward trending 'Luna' in 2017.
 
-### Top name by birth year
-
-```{r, echo=FALSE}
+<br>
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
 plot_6 = 
 distinct_dogz %>% 
   filter(animal_name != "Unknown",
@@ -190,12 +212,15 @@ distinct_dogz %>%
   group_by(animal_birth_year, animal_name) %>% 
   summarize(n_obs = n()) %>% 
   top_n(1) %>% 
-    ggplot(aes(x=animal_birth_year, y=n_obs, group = animal_name, color = animal_name)) + geom_point() + geom_line() +
+    ggplot(aes(x=animal_birth_year, y=n_obs, group = animal_name, color = animal_name)) + geom_point(size=2) + geom_line(size=1) +
   labs(title = "Top name by birth year", 
     x = "Birth year", 
     y = "Number of dogs")
 plot_6
+
 ```
+
+
 
 
 
