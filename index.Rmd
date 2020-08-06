@@ -12,7 +12,7 @@ Hello! My name is Sam and I am a public health professional with functional expe
 
 <center>
 
-<img src="images/cocktail.jpg" style="width:40%">
+<img src="images/curl.jpg" style="width:40%">
 
 </center>
 
